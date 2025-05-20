@@ -1,0 +1,70 @@
+vectordb:
+  - name: nomic_embed
+    db_type: chroma
+    client_type: persistent
+    embedding_model:
+      type: ollama
+      model_name: nomic-embed-text
+    collection_name: nomic_embed
+    path: ${PROJECT_DIR}/resources/chroma
+    embedding_batch: 20
+  
+  - name: mxbai_embed
+    db_type: chroma
+    client_type: persistent
+    embedding_model:
+      type: ollama
+      model_name: mxbai-embed-large
+    collection_name: mxbai_embed
+    path: ${PROJECT_DIR}/resources/chroma
+    embedding_batch: 20
+
+# Chunking configuration
+chunking:
+  modules:
+    - module_type: llama_index_chunk
+      chunk_method: [Token, Sentence]  # Testing two chunking methods
+      chunk_size: [256, 512]          # Reasonable chunk sizes
+      chunk_overlap: 24
+      add_file_name: en
+
+# RAG pipeline configuration
+node_lines:
+  - node_line_name: retrieve_line
+    nodes:
+      - node_type: retrieval
+        strategy:
+          metrics: [retrieval_f1, retrieval_recall, retrieval_precision]
+          speed_threshold: 20  # Increased for local models
+        top_k: 3
+        modules:
+          - module_type: vectordb
+            vectordb: nomic_embed
+          - module_type: vectordb
+            vectordb: mxbai_embed
+          - module_type: bm25
+      
+  - node_line_name: generate_line
+    nodes:
+      - node_type: prompt_maker
+        strategy:
+          metrics:
+            - metric_name: rouge
+        modules:
+          - module_type: fstring
+            prompt: 
+              - "Answer to given questions with the following passage: {retrieved_contents} \n\n Question: {query} \n\n Answer:"
+      
+      - node_type: generator
+        strategy:
+          metrics:
+            - metric_name: rouge
+          speed_threshold: 20  # Increased for local models
+        modules:
+          - module_type: llama_index_llm
+            llm: openailike
+            model: llama3
+            api_base: "http://localhost:11434/v1"  # Add this line to point to Ollama's OpenAI-compatible endpoint
+            api_key: "ollama-not-needed-but-required"  # Add a dummy API key
+            temperature: 0.5
+            max_tokens: 150

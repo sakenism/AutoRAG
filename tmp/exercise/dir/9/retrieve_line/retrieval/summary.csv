@@ -1,0 +1,25 @@
+filename,module_name,module_params,execution_time,retrieval_precision,retrieval_recall,retrieval_f1,is_best
+0.parquet,VectorDB,"{'top_k': 10, 'vectordb': 'nomic_embed'}",0.01737123489379883,0.42400000000000004,0.89,0.5391315332414404,False
+1.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'nomic_embed'}",0.011139916181564331,0.6683333333333333,0.85,0.7254999999999999,False
+2.parquet,VectorDB,"{'top_k': 5, 'vectordb': 'nomic_embed'}",0.012445884943008422,0.583,0.87,0.6642460317460316,False
+3.parquet,VectorDB,"{'top_k': 10, 'vectordb': 'mxbai_embed'}",0.026244603395462036,0.5685,0.915,0.665598951701893,False
+4.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'mxbai_embed'}",0.034857490062713624,0.78,0.905,0.8215,False
+5.parquet,VectorDB,"{'top_k': 5, 'vectordb': 'mxbai_embed'}",0.019016019105911254,0.715,0.91,0.773373015873016,False
+6.parquet,VectorDB,"{'top_k': 10, 'vectordb': 'flagembed_large'}",0.11466502070426941,0.608,0.935,0.6984829957624075,False
+7.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'flagembed_large'}",0.07201495885848999,0.7966666666666665,0.91,0.8315,False
+8.parquet,VectorDB,"{'top_k': 5, 'vectordb': 'flagembed_large'}",0.06985884547233581,0.74,0.915,0.7910515873015873,False
+9.parquet,VectorDB,"{'top_k': 10, 'vectordb': 'flagembed_small'}",0.05425486445426941,0.5984999999999999,0.935,0.6907919759119449,False
+10.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'flagembed_small'}",0.032521365880966185,0.79,0.9,0.8245,False
+11.parquet,VectorDB,"{'top_k': 5, 'vectordb': 'flagembed_small'}",0.03389290452003479,0.7340000000000001,0.91,0.7870833333333335,False
+12.parquet,BM25,{'top_k': 10},0.017815304994583128,0.5675,0.955,0.672288971778136,False
+13.parquet,BM25,{'top_k': 3},0.016264665126800536,0.7616666666666666,0.895,0.8030000000000002,False
+14.parquet,BM25,{'top_k': 5},0.018735395669937135,0.715,0.915,0.7752380952380952,False
+15.parquet,HybridRRF,"{'top_k': 10, 'rrf_k': 1, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 3, 'vectordb': 'flagembed_large'}, {'top_k': 3})}",0.08827962398529053,0.7631666666666667,0.94,0.8148282828282828,False
+16.parquet,HybridRRF,"{'top_k': 10, 'rrf_k': 3, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 3, 'vectordb': 'flagembed_large'}, {'top_k': 3})}",0.08827962398529053,0.7631666666666667,0.94,0.8148282828282828,False
+17.parquet,HybridRRF,"{'top_k': 10, 'rrf_k': 5, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 3, 'vectordb': 'flagembed_large'}, {'top_k': 3})}",0.08827962398529053,0.7631666666666667,0.94,0.8148282828282828,False
+18.parquet,HybridRRF,"{'top_k': 3, 'rrf_k': 1, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 3, 'vectordb': 'flagembed_large'}, {'top_k': 3})}",0.08827962398529053,0.8166666666666668,0.935,0.8540000000000001,True
+19.parquet,HybridRRF,"{'top_k': 3, 'rrf_k': 3, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 3, 'vectordb': 'flagembed_large'}, {'top_k': 3})}",0.08827962398529053,0.8166666666666668,0.935,0.8540000000000001,False
+20.parquet,HybridRRF,"{'top_k': 3, 'rrf_k': 5, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 3, 'vectordb': 'flagembed_large'}, {'top_k': 3})}",0.08827962398529053,0.8166666666666668,0.935,0.8540000000000001,False
+21.parquet,HybridRRF,"{'top_k': 5, 'rrf_k': 1, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 3, 'vectordb': 'flagembed_large'}, {'top_k': 3})}",0.08827962398529053,0.7655,0.94,0.8174365079365079,False
+22.parquet,HybridRRF,"{'top_k': 5, 'rrf_k': 3, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 3, 'vectordb': 'flagembed_large'}, {'top_k': 3})}",0.08827962398529053,0.7655,0.94,0.8174365079365079,False
+23.parquet,HybridRRF,"{'top_k': 5, 'rrf_k': 5, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 3, 'vectordb': 'flagembed_large'}, {'top_k': 3})}",0.08827962398529053,0.7655,0.94,0.816940476190476,False

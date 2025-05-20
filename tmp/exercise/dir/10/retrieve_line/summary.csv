@@ -1,0 +1,2 @@
+node_type,best_module_filename,best_module_name,best_module_params,best_execution_time
+retrieval,12.parquet,HybridRRF,"{'top_k': 3, 'rrf_k': 1, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 2, 'vectordb': 'flagembed_large'}, {'top_k': 2})}",0.0926648843288421

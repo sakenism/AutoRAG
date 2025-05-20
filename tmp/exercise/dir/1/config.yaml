@@ -1,0 +1,65 @@
+# Define your Vector DB configurations with batch size limits
+vectordb:
+  - name: openai_embed_3_small
+    db_type: chroma
+    client_type: persistent
+    embedding_model: openai_embed_3_small
+    collection_name: openai_embed_3_small
+    path: ${PROJECT_DIR}/resources/chroma
+    embedding_batch: 20  # Limit batch size to avoid token limits
+  
+  - name: openai_embed_3_large
+    db_type: chroma
+    client_type: persistent
+    embedding_model: openai_embed_3_large
+    collection_name: openai_embed_3_large
+    path: ${PROJECT_DIR}/resources/chroma
+    embedding_batch: 20  # Limit batch size to avoid token limits
+
+# Chunking configuration with smaller chunk sizes
+chunking:
+  modules:
+    - module_type: llama_index_chunk
+      chunk_method: [Token, Sentence]  # Testing two chunking methods
+      chunk_size: [256, 512]          # Smaller chunk sizes
+      chunk_overlap: 24
+      add_file_name: en
+
+# RAG pipeline configuration
+node_lines:
+  - node_line_name: retrieve_line
+    nodes:
+      - node_type: retrieval
+        strategy:
+          metrics: [retrieval_f1, retrieval_recall, retrieval_precision]
+          speed_threshold: 10
+        top_k: 3  # Reduced from 5 to 3
+        modules:
+          - module_type: vectordb
+            vectordb: openai_embed_3_small
+          - module_type: vectordb
+            vectordb: openai_embed_3_large
+          - module_type: bm25
+      
+  - node_line_name: generate_line
+    nodes:
+      - node_type: prompt_maker
+        strategy:
+          metrics:
+            - metric_name: rouge
+        modules:
+          - module_type: fstring
+            prompt: 
+              - "Answer to given questions with the following passage: {retrieved_contents} \n\n Question: {query} \n\n Answer:"
+      
+      - node_type: generator
+        strategy:
+          metrics:
+            - metric_name: rouge
+        modules:
+          - module_type: llama_index_llm
+            llm: openai
+            model: gpt-3.5-turbo
+            temperature: 0.5
+            max_tokens: 150
+            

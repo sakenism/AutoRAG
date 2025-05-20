@@ -1,0 +1,15 @@
+filename,module_name,module_params,execution_time,retrieval_precision,retrieval_recall,retrieval_f1,is_best
+0.parquet,VectorDB,"{'top_k': 2, 'vectordb': 'nomic_embed'}",0.01566145896911621,0.7175,0.835,0.7566666666666666,False
+1.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'nomic_embed'}",0.01306812047958374,0.665,0.845,0.7219999999999999,False
+2.parquet,VectorDB,"{'top_k': 2, 'vectordb': 'mxbai_embed'}",0.02227146029472351,0.8075,0.88,0.8316666666666666,False
+3.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'mxbai_embed'}",0.019038989543914794,0.775,0.9,0.816,False
+4.parquet,VectorDB,"{'top_k': 2, 'vectordb': 'flagembed_large'}",0.07317163944244384,0.825,0.905,0.8516666666666666,False
+5.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'flagembed_large'}",0.06293076157569885,0.8016666666666665,0.91,0.8355000000000001,False
+6.parquet,VectorDB,"{'top_k': 2, 'vectordb': 'flagembed_small'}",0.0409259295463562,0.825,0.895,0.8483333333333333,False
+7.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'flagembed_small'}",0.03546578526496887,0.7933333333333334,0.9,0.8280000000000001,False
+8.parquet,BM25,{'top_k': 2},0.019493244886398316,0.8,0.89,0.83,False
+9.parquet,BM25,{'top_k': 3},0.020095524787902833,0.7616666666666666,0.895,0.8030000000000002,False
+10.parquet,HybridRRF,"{'top_k': 2, 'rrf_k': 1, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 2, 'vectordb': 'flagembed_large'}, {'top_k': 2})}",0.09266488432884215,0.8275,0.915,0.8566666666666666,False
+11.parquet,HybridRRF,"{'top_k': 2, 'rrf_k': 3, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 2, 'vectordb': 'flagembed_large'}, {'top_k': 2})}",0.09266488432884215,0.8275,0.915,0.8566666666666666,False
+12.parquet,HybridRRF,"{'top_k': 3, 'rrf_k': 1, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 2, 'vectordb': 'flagembed_large'}, {'top_k': 2})}",0.09266488432884215,0.8158333333333334,0.935,0.8528333333333333,True
+13.parquet,HybridRRF,"{'top_k': 3, 'rrf_k': 3, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 2, 'vectordb': 'flagembed_large'}, {'top_k': 2})}",0.09266488432884215,0.8158333333333334,0.935,0.8528333333333333,False

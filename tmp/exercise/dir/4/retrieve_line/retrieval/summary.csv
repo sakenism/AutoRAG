@@ -1,0 +1,4 @@
+filename,module_name,module_params,execution_time,retrieval_f1,retrieval_recall,retrieval_precision,retrieval_ndcg,is_best
+0.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'nomic_embed'}",0.011790479421615601,0.7244999999999999,0.845,0.6683333333333333,0.6988204117510459,False
+1.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'mxbai_embed'}",0.020453466176986693,0.82,0.905,0.7783333333333333,0.7987711490409102,True
+2.parquet,BM25,{'top_k': 3},0.019748690128326415,0.8030000000000002,0.895,0.7616666666666666,0.7874513104842823,False

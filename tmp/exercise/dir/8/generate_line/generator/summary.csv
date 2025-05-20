@@ -1,0 +1,2 @@
+filename,module_name,module_params,execution_time,average_output_token,rouge,sem_score,is_best
+0.parquet,LlamaIndexLLM,"{'llm': 'openailike', 'model': 'llama3:latest', 'api_base': 'http://localhost:11434/v1', 'api_key': 'ollama-not-needed-but-required', 'temperature': 0.0, 'max_tokens': 1500, 'request_timeout': 120, 'timeout': 120}",14.150255551338196,50.905,0.16948488359435707,0.827917197714143,True

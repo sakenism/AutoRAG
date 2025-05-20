@@ -1,0 +1,53 @@
+# Define your Vector DB configuration with just one OpenAI model
+vectordb:
+  - name: openai_embed_3_small
+    db_type: chroma
+    client_type: persistent
+    embedding_model: openai_embed_3_small
+    collection_name: openai_embed_3_small
+    path: ${PROJECT_DIR}/resources/chroma
+
+# Simpler chunking configuration to test setup
+chunking:
+  modules:
+    - module_type: llama_index_chunk
+      chunk_method: Token
+      chunk_size: 512
+      chunk_overlap: 24
+      add_file_name: en
+
+# Minimal RAG pipeline configuration
+node_lines:
+  - node_line_name: retrieve_line
+    nodes:
+      - node_type: retrieval
+        strategy:
+          metrics: [retrieval_f1, retrieval_recall]
+          speed_threshold: 10
+        top_k: 3
+        modules:
+          - module_type: vectordb
+            vectordb: openai_embed_3_small
+          - module_type: bm25
+      
+  - node_line_name: generate_line
+    nodes:
+      - node_type: prompt_maker
+        strategy:
+          metrics:
+            - metric_name: rouge
+        modules:
+          - module_type: fstring
+            prompt: 
+              - "Answer to given questions with the following passage: {retrieved_contents} \n\n Question: {query} \n\n Answer:"
+      
+      - node_type: generator
+        strategy:
+          metrics:
+            - metric_name: rouge
+        modules:
+          - module_type: llama_index_llm
+            llm: openai
+            model: gpt-3.5-turbo
+            temperature: 0.5
+            max_tokens: 150  # Limiting output size to save cost
