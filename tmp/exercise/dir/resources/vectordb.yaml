@@ -8,30 +8,3 @@ vectordb:
     type: ollama
   name: nomic_embed
   path: dir/resources/chroma
-- client_type: persistent
-  collection_name: mxbai_embed
-  db_type: chroma
-  embedding_batch: 20
-  embedding_model:
-    model_name: mxbai-embed-large
-    type: ollama
-  name: mxbai_embed
-  path: dir/resources/chroma
-- client_type: persistent
-  collection_name: flagembed_large
-  db_type: chroma
-  embedding_batch: 20
-  embedding_model:
-    model_name: BAAI/bge-large-en-v1.5
-    type: huggingface
-  name: flagembed_large
-  path: dir/resources/chroma
-- client_type: persistent
-  collection_name: flagembed_small
-  db_type: chroma
-  embedding_batch: 20
-  embedding_model:
-    model_name: BAAI/bge-small-en-v1.5
-    type: huggingface
-  name: flagembed_small
-  path: dir/resources/chroma

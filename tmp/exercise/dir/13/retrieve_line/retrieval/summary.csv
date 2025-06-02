@@ -1,0 +1,15 @@
+filename,module_name,module_params,execution_time,retrieval_precision,retrieval_recall,retrieval_f1,is_best
+0.parquet,VectorDB,"{'top_k': 2, 'vectordb': 'nomic_embed'}",0.011618045568466186,0.7225,0.84,0.7616666666666666,False
+1.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'nomic_embed'}",0.01086035966873169,0.6666666666666665,0.85,0.7244999999999999,False
+2.parquet,VectorDB,"{'top_k': 2, 'vectordb': 'mxbai_embed'}",0.021141358613967896,0.81,0.885,0.835,False
+3.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'mxbai_embed'}",0.018453218936920167,0.7766666666666666,0.9,0.8175,False
+4.parquet,VectorDB,"{'top_k': 2, 'vectordb': 'flagembed_large'}",0.07315012693405151,0.83,0.905,0.855,False
+5.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'flagembed_large'}",0.05730249404907226,0.7966666666666665,0.91,0.8315,False
+6.parquet,VectorDB,"{'top_k': 2, 'vectordb': 'flagembed_small'}",0.03829184412956238,0.82,0.895,0.845,False
+7.parquet,VectorDB,"{'top_k': 3, 'vectordb': 'flagembed_small'}",0.03601238489151001,0.79,0.9,0.825,False
+8.parquet,BM25,{'top_k': 2},0.016240129470825194,0.8,0.89,0.83,False
+9.parquet,BM25,{'top_k': 3},0.015772360563278198,0.7616666666666666,0.895,0.8030000000000002,False
+10.parquet,HybridRRF,"{'top_k': 2, 'rrf_k': 1, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 2, 'vectordb': 'flagembed_large'}, {'top_k': 2})}",0.0893902564048767,0.83,0.915,0.8583333333333333,True
+11.parquet,HybridRRF,"{'top_k': 2, 'rrf_k': 3, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 2, 'vectordb': 'flagembed_large'}, {'top_k': 2})}",0.0893902564048767,0.83,0.915,0.8583333333333333,False
+12.parquet,HybridRRF,"{'top_k': 3, 'rrf_k': 1, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 2, 'vectordb': 'flagembed_large'}, {'top_k': 2})}",0.0893902564048767,0.8141666666666666,0.935,0.8518333333333333,False
+13.parquet,HybridRRF,"{'top_k': 3, 'rrf_k': 3, 'weight': 4.0, 'target_modules': ('VectorDB', 'BM25'), 'target_module_params': ({'top_k': 2, 'vectordb': 'flagembed_large'}, {'top_k': 2})}",0.0893902564048767,0.8141666666666666,0.935,0.8518333333333333,False
