@@ -1,0 +1,69 @@
+# Generation-only configuration
+# This config assumes you already have retrieved passages in your QA data
+# Use this after running retrieval evaluation and preparing QA data with retrieved_contents
+
+# Note: No vectordb or chunking config needed for generation-only evaluation
+# The input QA data should already contain 'retrieved_contents' and 'retrieved_ids' columns
+
+# RAG pipeline configuration - GENERATION ONLY
+node_lines:
+  # Generation phase with multiple LLM models
+  - node_line_name: generate_line
+    nodes:
+      # Prompt formatting
+      - node_type: prompt_maker
+        strategy:
+          # Changed from rouge to bleu to avoid semantic evaluation
+          metrics:
+            - metric_name: bleu  # BLEU is a lexical metric that doesn't need OpenAI
+          speed_threshold: 30
+        modules:
+          - module_type: fstring
+            prompt: 
+              # Simplified prompts to reduce context size
+              - "Question: {query}\nContext: {retrieved_contents}\nAnswer:"
+              # You can add more prompt variations here
+              - "Context: {retrieved_contents}\n\nBased on the above context, please answer the following question:\nQuestion: {query}\nAnswer:"
+              - "Answer the question using only the provided context.\n\nContext: {retrieved_contents}\n\nQuestion: {query}\nAnswer:"
+      
+      # Generation with different models
+      - node_type: generator
+        strategy:
+          # Changed from rouge to bleu to avoid semantic evaluation
+          metrics:
+            - metric_name: bleu  # BLEU is a lexical metric that doesn't need OpenAI
+            - metric_name: meteor  # Another non-semantic metric
+          speed_threshold: 120
+        modules:
+          # Llama 3 model configuration
+          - module_type: llama_index_llm
+            llm: openailike
+            model: llama3:latest
+            api_base: "http://localhost:11434/v1"
+            api_key: "ollama-not-needed-but-required"
+            temperature: [0.0, 0.3, 0.7]  # Testing different creativity levels
+            max_tokens: 1000  # Reduced from 1500
+            request_timeout: 180
+            timeout: 180
+          
+          # Mistral model configuration
+          - module_type: llama_index_llm
+            llm: openailike
+            model: mistral:latest
+            api_base: "http://localhost:11434/v1"
+            api_key: "ollama-not-needed-but-required"
+            temperature: [0.0, 0.3, 0.7]  # Testing different creativity levels
+            max_tokens: 1000  # Reduced from 1500
+            request_timeout: 180
+            timeout: 180
+          
+          # Optional: Add more models if available
+          # - module_type: llama_index_llm
+          #   llm: openailike
+          #   model: phi3:latest
+          #   api_base: "http://localhost:11434/v1"
+          #   api_key: "ollama-not-needed-but-required"
+          #   temperature: [0.0, 0.3]
+          #   max_tokens: 1000
+          #   request_timeout: 180
+          #   timeout: 180
