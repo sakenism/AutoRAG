@@ -6,6 +6,7 @@ from typing import Callable, List
 import autorag
 from autorag import LazyInit
 from autorag.data import sentence_splitter_modules
+import requests
 
 
 # Load environment variables
@@ -61,7 +62,6 @@ def register_custom_embeddings():
 def main():
     # Check if Ollama server is accessible
     try:
-        import requests
         response = requests.get("http://localhost:11434/api/tags")
         if response.status_code == 200:
             print("✅ Connected to Ollama server successfully")
