@@ -118,7 +118,7 @@ node_lines:
           - module_type: llama_index_llm
             llm: openailike
             model: llama3:latest
-            api_base: "http://localhost:11434/v1"
+            api_base: "http://100.98.3.202:11434/v1"
             api_key: "ollama-not-needed-but-required"
             temperature: [0.0, 0.3]  # Reduced from [0.0, 0.3, 0.7]
             max_tokens: 1000  # Reduced from 1500
@@ -129,7 +129,7 @@ node_lines:
           - module_type: llama_index_llm
             llm: openailike
             model: mistral:latest
-            api_base: "http://localhost:11434/v1"
+            api_base: "http://100.98.3.202:11434/v1"
             api_key: "ollama-not-needed-but-required"
             temperature: [0.0, 0.3]  # Reduced from [0.0, 0.3, 0.7]
             max_tokens: 1000  # Reduced from 1500
