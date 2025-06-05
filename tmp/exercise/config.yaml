@@ -117,7 +117,7 @@ node_lines:
           # Llama 3 model configuration
           - module_type: llama_index_llm
             llm: openailike
-            model: llama3:latest
+            model: llama3.3:latest
             api_base: "http://100.98.3.202:11434/v1"
             api_key: "ollama-not-needed-but-required"
             temperature: [0.0, 0.3]  # Reduced from [0.0, 0.3, 0.7]
@@ -126,12 +126,12 @@ node_lines:
             timeout: 180
           
           # Mistral model configuration
-          - module_type: llama_index_llm
-            llm: openailike
-            model: mistral:latest
-            api_base: "http://100.98.3.202:11434/v1"
-            api_key: "ollama-not-needed-but-required"
-            temperature: [0.0, 0.3]  # Reduced from [0.0, 0.3, 0.7]
-            max_tokens: 1000  # Reduced from 1500
-            request_timeout: 180
-            timeout: 180
+          # - module_type: llama_index_llm
+          #   llm: openailike
+          #   model: mistral:latest
+          #   api_base: "http://100.98.3.202:11434/v1"
+          #   api_key: "ollama-not-needed-but-required"
+          #   temperature: [0.0, 0.3]  # Reduced from [0.0, 0.3, 0.7]
+          #   max_tokens: 1000  # Reduced from 1500
+          #   request_timeout: 180
+          #   timeout: 180
